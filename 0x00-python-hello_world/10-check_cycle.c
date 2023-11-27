@@ -15,8 +15,8 @@ int check_cycle(listint_t *list)
 		return (0);
 
 	/* Initailize both slow and fast moving pointers */
-	slowptr = list; /* slowptr moves 1 step at a time */
-	fastptr = list->next; /* fastptr moves 2 steps at a time */
+	slowptr = list->next; /* slowptr moves 1 step at a time */
+	fastptr = list->next->next; /* fastptr moves 2 steps at a time */
 
 	/* Iterate till fastptr reaches end of */
 	/* the list or a cycle is detected */
