@@ -8,7 +8,7 @@ def uppercase(str):
         if 97 <= ord(char) <= 122:
             # Convert to uppercase by subtracting 32 from the ASCII value
             # Difference between uppercase & lowercase ASCII is 32
-            result += chr(ord(char) - 32)
+            result += "{}".format(chr(ord(char) - 32))
         else:
             result += char
     print(result) # Printing the result string with a newline character
