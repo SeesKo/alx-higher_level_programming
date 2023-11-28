@@ -11,4 +11,5 @@ def uppercase(str):
             result += "{}".format(chr(ord(char) - 32))
         else:
             result += char
-    print(result) # Printing the result string with a newline character
+    # Printing the result string with a newline character
+    print(result)
