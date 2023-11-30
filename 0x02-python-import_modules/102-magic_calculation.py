@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def magic_calculation(a, b):
     magic_module = __import__('magic_calculation_102',
                               globals(), locals(), ['add', 'sub'], 0)
