@@ -8,37 +8,38 @@
  */
 int is_palindrome(listint_t **head)
 {
-	if (*head == NULL || (*head)->next == NULL)
-		return (1); /* Empty list or single-node list is a palindrome */
-
-	listint_t *slow = *head;
-	listint_t *fast = *head;
+	listint_t *slowptr = *head;
+	listint_t *fastptr = *head;
 	listint_t *prev = NULL;
 
+	/* Empty list or single-node list is a palindrome */
+	if (*head == NULL || (*head)->next == NULL)
+		return (1);
+
 	/* Move fast to the end and reverse the first half */
-	while (fast != NULL && fast->next != NULL)
+	while (fastptr != NULL && fastptr->next != NULL)
 	{
-		fast = fast->next->next;
+		fastptr = fastptr->next->next;
 
-		listint_t *next = slow->next;
+		listint_t *next = slowptr->next;
 
-		slow->next = prev;
-		prev = slow;
-		slow = next;
+		slowptr->next = prev;
+		prev = slowptr;
+		slowptr = next;
 	}
 
 	/* If the length is odd, skip the middle node */
-	if (fast != NULL)
-		slow = slow->next;
+	if (fastptr != NULL)
+		slowptr = slowptr->next;
 
 	/* Compare the reversed first half with the second half */
-	while (prev != NULL && slow != NULL)
+	while (prev != NULL && slowptr != NULL)
 	{
-		if (prev->n != slow->n)
+		if (prev->n != slowptr->n)
 			return (0); /* Not a palindrome */
 
 		prev = prev->next;
-		slow = slow->next;
+		slowptr = slowptr->next;
 	}
 
 	return (1); /* Palindrome */
