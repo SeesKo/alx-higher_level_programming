@@ -21,6 +21,7 @@ listint_t *reverse_listint(listint_t **head)
 	*head = prev;
 	return (*head);
 }
+
 /**
  * is_palindrome - checks if a singly linked list is a palindrome
  * @head: pointer to the head of the linked list
