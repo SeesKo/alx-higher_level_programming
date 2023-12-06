@@ -11,5 +11,5 @@
 
 1. The first line of all files should be exactly #!/usr/bin/python3.
 2. A README.md file, at the root of the folder of the project, is mandatory.
-3. Your code should use the pycodestyle (version 2.8.)
+3. The code should use the pycodestyle (version 2.8.).
 4. All files must be executable.
