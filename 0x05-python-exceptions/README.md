@@ -2,4 +2,4 @@
 
 ## General
 
-ALX High Level Programming - Python: Exceptions
+ALX Higher Level Programming - Python: Exceptions
