@@ -5,8 +5,11 @@ def safe_print_list(my_list=[], x=0):
         for i in range(x):
             print(my_list[i], end="")
             elem_count += 1
-    except IndexError:
-        pass  # Handle the case when the index is out of range
 
-    print()  # Print a new line after the elements
+    # Handling case when index is out of range
+    except IndexError:
+        pass
+
+    # Printing new line after the elements
+    print()
     return elem_count
