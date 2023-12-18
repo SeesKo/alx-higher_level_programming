@@ -7,6 +7,8 @@
  */
 void print_python_list(PyObject *p)
 {
+	setbuf(stdout, NULL);
+
 	Py_ssize_t size, i;
 
 	if (!PyList_Check(p))
@@ -34,6 +36,8 @@ void print_python_list(PyObject *p)
  */
 void print_python_bytes(PyObject *p)
 {
+	setbuf(stdout, NULL);
+
 	Py_ssize_t size, i;
 	char *bytes_data;
 	int i;
@@ -75,6 +79,8 @@ void print_python_bytes(PyObject *p)
  */
 void print_python_float(PyObject *p)
 {
+	setbuf(stdout, NULL);
+
 	if (!PyFloat_Check(p))
 	{
 		fprintf(stderr, "Invalid Float Object\n");
