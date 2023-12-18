@@ -1,5 +1,6 @@
 #include <Python.h>
 #include <stdio.h>
+#include <floatobject.h>
 
 /**
  * print_python_list - Prints information about a Python list.
@@ -7,8 +8,6 @@
  */
 void print_python_list(PyObject *p)
 {
-	setbuf(stdout, NULL);
-
 	Py_ssize_t size, i;
 
 	if (!PyList_Check(p))
@@ -21,8 +20,9 @@ void print_python_list(PyObject *p)
 
 	printf("[*] Python list info\n");
 	printf("[*] Size of the Python List = %ld\n", size);
+	printf("[*] Allocated = %ld\n", ((PyListObject *)p)->allocated);
 
-	for (i = 0; i < size; ++i)
+	for (i = 0; i < size; i++)
 	{
 		PyObject *item = PyList_GetItem(p, i);
 
@@ -36,11 +36,8 @@ void print_python_list(PyObject *p)
  */
 void print_python_bytes(PyObject *p)
 {
-	setbuf(stdout, NULL);
-
 	Py_ssize_t size, i;
-	char *bytes_data;
-	int i;
+	char *bytes;
 
 	if (!PyBytes_Check(p))
 	{
@@ -49,28 +46,18 @@ void print_python_bytes(PyObject *p)
 	}
 
 	size = PyBytes_Size(p);
-	bytes_data = PyBytes_AsString(p);
+	bytes = PyBytes_AsString(p);
 
 	printf("[.] bytes object info\n");
-	printf("	[.] size: %ld\n", size);
-	printf("	[.] trying string: %s\n", bytes_data);
+	printf("	size: %ld\n", size);
+	printf("	trying string: %s\n", bytes);
 
-	if (size > 10)
+	printf("	first 10 bytes:");
+	for (i = 0; i < size && i < 10; i++)
 	{
-		printf("	[.] first 10 bytes: ");
-		for (i = 0; i < 10; ++i)
-			printf("%02x ", bytes_data[i] & 0xFF);
-
-		printf("\n");
+		printf(" %02hhx", bytes[i]);
 	}
-	else
-	{
-		printf("	[.] first %ld bytes: ", size);
-		for (i = 0; i < size; ++i)
-			printf("%02x ", bytes_data[i] & 0xFF);
-
-		printf("\n");
-	}
+	printf("\n");
 }
 
 /**
@@ -79,8 +66,6 @@ void print_python_bytes(PyObject *p)
  */
 void print_python_float(PyObject *p)
 {
-	setbuf(stdout, NULL);
-
 	if (!PyFloat_Check(p))
 	{
 		fprintf(stderr, "Invalid Float Object\n");
@@ -88,5 +73,5 @@ void print_python_float(PyObject *p)
 	}
 
 	printf("[.] float object info\n");
-	printf("	[.] value: %f\n", PyFloat_AsDouble(p));
+	printf("	value: %f\n", ((PyFloatObject *)p)->ob_fval);
 }
