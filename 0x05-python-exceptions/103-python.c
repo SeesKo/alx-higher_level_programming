@@ -23,7 +23,7 @@ void display_python_list(PyObject *p)
 	printf("[*] Python list info\n");
 	if (strcmp(p->ob_type->tp_name, "list") != 0)
 	{
-		printf("        [ERROR] Invalid List Object\n");
+		printf("[ERROR] Invalid List Object\n");
 		return;
 	}
 
@@ -35,7 +35,7 @@ void display_python_list(PyObject *p)
 		data_type = python_list->ob_item[index]->ob_type->tp_name;
 		printf("Element %ld: %s\n", index, data_type);
 
-		/* Checking data type and call corresponding function */
+		// Check data type and call corresponding function
 		if (strcmp(data_type, "bytes") == 0)
 			display_python_bytes(python_list->ob_item[index]);
 		else if (strcmp(data_type, "float") == 0)
@@ -57,18 +57,18 @@ void display_python_bytes(PyObject *p)
 	printf("[.] bytes object info\n");
 	if (strcmp(p->ob_type->tp_name, "bytes") != 0)
 	{
-		printf("        [ERROR] Invalid Bytes Object\n");
+		printf("[ERROR] Invalid Bytes Object\n");
 		return;
 	}
 
 	byte_size = ((PyVarObject *)p)->ob_size;
-	printf("        size: %ld\n", byte_size);
+	printf("size: %ld\n", byte_size);
 
-	printf("        trying string: %s\n", python_bytes->ob_sval);
+	printf("trying string: %s\n", python_bytes->ob_sval);
 
 	byte_size = (byte_size >= 10) ? 10 : byte_size + 1;
 
-	printf("        first %ld bytes: ", byte_size);
+	printf("first %ld bytes: ", byte_size);
 	for (i = 0; i < byte_size; i++)
 	{
 		printf("%02hhx", python_bytes->ob_sval[i]);
@@ -93,11 +93,11 @@ void display_python_float(PyObject *p)
 	printf("[.] float object info\n");
 	if (strcmp(p->ob_type->tp_name, "float") != 0)
 	{
-		printf("        [ERROR] Invalid Float Object\n");
+		printf("[ERROR] Invalid Float Object\n");
 		return;
 	}
 
 	result_buffer = PyOS_double_to_string(float_obj->ob_fval, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
-	printf("        value: %s\n", result_buffer);
+	printf("value: %s\n", result_buffer);
 	PyMem_Free(result_buffer);
 }
