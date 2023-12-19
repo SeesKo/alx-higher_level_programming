@@ -70,8 +70,10 @@ class SinglyLinkedList:
         result = ""
         current = self.head
         while current:
-            result += str(current.data) + "\n"
+            result += str(current.data)
             current = current.next_node
+            if current:
+                result += "\n"
         return result
 
     def sorted_insert(self, value):
