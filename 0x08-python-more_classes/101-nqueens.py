@@ -1,77 +1,63 @@
 #!/usr/bin/python3
+from sys import argv
 
-"""Solves the N queens problem."""
-
-import sys
+"""
+This modules finds all solutions for N queens problem
+"""
 
 
 class Queen:
     """
-    Queen class represents the N-Queens problem solver.
+    Class defined as Queen to solve nQueens problem
+    using recursion
     """
+    def can_move(self, x, y, right):
 
-    def __init__(self, n):
         """
-        Initializes a Queen object.
+        Function to see if queen can move in the vaild constraint
+        column provided
+        """
+        for a in range(x):
+            if right[a] == y:
+                return (False)
+            if abs(right[a] - y) == (x - a):
+                return (False)
+        return (True)
 
-        Raises:
-            ValueError: If N is not a positive integer or is less than 4.
+    def solution(self, n, N, right):
         """
-        if not isinstance(n, int) or n < 4:
-            raise ValueError("N must be a positive integer and at least 4")
-        self.n = n
-
-    def is_safe(self, board, row, col):
+        function to find all the right combos that can happen
+        using recursion.
         """
-        Check if placing a queen at a specific position
-        (row, col) on the board is safe.
-
-        Returns:
-            bool: True if the placement is safe, False otherwise.
-        """
-        for i in range(row):
-            if board[i] == col or \
-               board[i] - i == col - row or \
-               board[i] + i == col + row:
-                return False
-        return True
-
-    def solve_nqueens_util(self, board, row, solutions):
-        """
-        Recursively solve the N-Queens problem for each row.
-        """
-        if row == self.n:
-            solutions.append([(i, board[i]) for i in range(self.n)])
+        if n == N:
+            print("[", end="")
+            for j in range(N):
+                print("[{}, {}]".format(j, right[j]), end="")
+                if j < N - 1:
+                    print(", ", end="")
+            print("]")
             return
 
-        for col in range(self.n):
-            if self.is_safe(board, row, col):
-                board[row] = col
-                self.solve_nqueens_util(board, row + 1, solutions)
-
-    def solve_nqueens(self):
-        """
-        Solve the N-Queens problem and return the solutions.
-        """
-        board = [-1] * self.n
-        solutions = []
-        self.solve_nqueens_util(board, 0, solutions)
-        return solutions
-
+        for j in range(N):
+            if self.can_move(n, j, right):
+                right[n] = j
+                self.solution(n + 1, N, right)
 
 if __name__ == "__main__":
-    """
-    Parse command-line arguments and create a Queen object.
-    """
-    if len(sys.argv) != 2:
-        print("Usage: nqueens N")
-        sys.exit(1)
+    count = len(argv)
 
-    try:
-        queen = Queen(int(sys.argv[1]))
-        solutions = queen.solve_nqueens()
-        for solution in solutions:
-            print(solution)
-    except ValueError as e:
-        print(f"Error: {e}")
-        sys.exit(1)
+    if count != 2:
+        print("Usage: nqueens N")
+        exit(1)
+    else:
+        try:
+            N = int(argv[1])
+        except:
+            print("N must be a number")
+            exit(1)
+    if N < 4:
+        print("N must be at least 4")
+        exit(1)
+
+    final = Queen()
+    final.solution(0, N, [None for i in range(N)])
