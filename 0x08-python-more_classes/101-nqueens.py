@@ -1,63 +1,57 @@
 #!/usr/bin/python3
-from sys import argv
-
-"""
-This modules finds all solutions for N queens problem
-"""
+import sys
 
 
-class Queen:
-    """
-    Class defined as Queen to solve nQueens problem
-    using recursion
-    """
-    def can_move(self, x, y, right):
+class ChessboardSolver:
+    def __init__(self, board_size):
+        self.board_size = board_size
+        self.solutions = []
 
-        """
-        Function to see if queen can move in the vaild constraint
-        column provided
-        """
-        for a in range(x):
-            if right[a] == y:
-                return (False)
-            if abs(right[a] - y) == (x - a):
-                return (False)
-        return (True)
+    def can_place_queen(self, row, col, placement):
+        for prev_row in range(row):
+            if placement[prev_row] == col or \
+                    abs(placement[prev_row] - col) == (row - prev_row):
+                return False
+        return True
 
-    def solution(self, n, N, right):
-        """
-        function to find all the right combos that can happen
-        using recursion.
-        """
-        if n == N:
-            print("[", end="")
-            for j in range(N):
-                print("[{}, {}]".format(j, right[j]), end="")
-                if j < N - 1:
-                    print(", ", end="")
-            print("]")
+    def find_solutions(self, current_row, placement):
+        if current_row == self.board_size:
+            self.solutions.append(placement.copy())
             return
 
-        for j in range(N):
-            if self.can_move(n, j, right):
-                right[n] = j
-                self.solution(n + 1, N, right)
+        for current_col in range(self.board_size):
+            if self.can_place_queen(current_row, current_col, placement):
+                placement[current_row] = current_col
+                self.find_solutions(current_row + 1, placement)
+
+
+def print_solution(solution):
+    for col in solution:
+        print("[{}, {}]".format(solution.index(col), col), end="")
+        if col != solution[-1]:
+            print(", ", end="")
+    print()
+
 
 if __name__ == "__main__":
-    count = len(argv)
+    argument_count = len(sys.argv)
 
-    if count != 2:
+    if argument_count != 2:
         print("Usage: nqueens N")
-        exit(1)
+        sys.exit(1)
     else:
         try:
-            N = int(argv[1])
-        except:
+            board_size = int(sys.argv[1])
+        except ValueError:
             print("N must be a number")
-            exit(1)
-    if N < 4:
-        print("N must be at least 4")
-        exit(1)
+            sys.exit(1)
 
-    final = Queen()
-    final.solution(0, N, [None for i in range(N)])
+    if board_size < 4:
+        print("N must be at least 4")
+        sys.exit(1)
+
+    solver_instance = ChessboardSolver(board_size)
+    solver_instance.find_solutions(0, [None for _ in range(board_size)])
+
+    for solution in solver_instance.solutions:
+        print_solution(solution)
