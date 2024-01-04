@@ -26,7 +26,8 @@ def solve_nqueens_util(board, row, n):
     Recursively solve the N-Queens problem for each row.
     """
     if row == n:
-        print([[i, board[i]] for i in range(n)])
+        # Print the solution in the required format
+        print([(i, board[i]) for i in range(n)])
         return
 
     for col in range(n):
