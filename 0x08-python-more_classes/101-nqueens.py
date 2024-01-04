@@ -1,13 +1,31 @@
 #!/usr/bin/python3
+
+"""Solves the Chessboard Queens problem."""
+
 import sys
 
 
 class ChessboardSolver:
+    """
+    ChessboardSolver class represents a solver for the
+    Queens problem on a chessboard.
+    """
+
     def __init__(self, board_size):
+        """
+        Initializes a ChessboardSolver object.
+        """
         self.board_size = board_size
         self.solutions = []
 
     def can_place_queen(self, row, col, placement):
+        """
+        Check if placing a queen at a specific position
+        (row, col) on the board is safe.
+
+        Returns:
+            bool: True if the placement is safe, False otherwise.
+        """
         for prev_row in range(row):
             if placement[prev_row] == col or \
                     abs(placement[prev_row] - col) == (row - prev_row):
@@ -15,6 +33,9 @@ class ChessboardSolver:
         return True
 
     def find_solutions(self, current_row, placement):
+        """
+        Recursively find solutions for the N-Queens problem.
+        """
         if current_row == self.board_size:
             self.solutions.append(placement.copy())
             return
@@ -26,6 +47,9 @@ class ChessboardSolver:
 
 
 def print_solution(solution):
+    """
+    Print a single solution for the Queens problem.
+    """
     for col in solution:
         print("[{}, {}]".format(solution.index(col), col), end="")
         if col != solution[-1]:
@@ -34,6 +58,10 @@ def print_solution(solution):
 
 
 if __name__ == "__main__":
+    """
+    Parse command-line arguments and create a ChessboardSolver
+    object to solve the Queens problem.
+    """
     argument_count = len(sys.argv)
 
     if argument_count != 2:
