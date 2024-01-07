@@ -1,0 +1,116 @@
+# Test Case 1
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+>>> text_indentation("Hello. How are you today?")
+Hello.
+<BLANKLINE>
+How are you today?
+<BLANKLINE>
+
+# Test Case 2
+>>> text_indentation("This... is? a test.")
+This...
+<BLANKLINE>
+is?
+<BLANKLINE>
+a test.
+<BLANKLINE>
+
+# Test Case 3
+>>> text_indentation(".?: This is a test.")
+.
+<BLANKLINE>
+<BLANKLINE>
+This is a test.
+<BLANKLINE>
+
+# Test Case 4
+>>> text_indentation("This is a test.,?:")
+This is a test.
+<BLANKLINE>
+
+# Test Case 5
+>>> text_indentation("This is. a test?:")
+This is.
+<BLANKLINE>
+a test?
+<BLANKLINE>
+
+# Test Case 6
+>>> text_indentation("This is a test")
+This is a test
+<BLANKLINE>
+
+# Test Case 7
+>>> text_indentation("How about multiple spaces?    Like this.")
+How about multiple spaces?
+<BLANKLINE>
+<BLANKLINE>
+Like this.
+<BLANKLINE>
+
+# Test Case 8
+>>> text_indentation("     Leading and trailing spaces.     ")
+Leading and trailing spaces.
+<BLANKLINE>
+
+# Test Case 9
+>>> text_indentation("String with numbers 123 and symbols !@#.")
+String with numbers 123 and symbols !
+<BLANKLINE>
+@#.
+<BLANKLINE>
+
+# Test Case 10
+>>> text_indentation("Empty string.")
+<BLANKLINE>
+
+# Test Case 11
+>>> text_indentation(".?:")
+.
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+
+# Test Case 12
+>>> text_indentation(":     ")
+:
+<BLANKLINE>
+
+# Test Case 13
+>>> text_indentation("Special characters and spaces. ?.?    ")
+Special characters and spaces.
+<BLANKLINE>
+<BLANKLINE>
+?.?
+<BLANKLINE>
+<BLANKLINE>
+
+>>> text_indentation()
+Traceback (most recent call last):
+...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+# Error Case 2
+>>> text_indentation("How", "..are", "you?")
+Traceback (most recent call last):
+...
+TypeError: text_indentation() takes 1 positional argument but 3 were given
+
+# Error Case 3
+>>> text_indentation(443434)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+# Error Case 4
+>>> text_indentation(None)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+# Error Case 5
+>>> text_indentation(30.443)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
