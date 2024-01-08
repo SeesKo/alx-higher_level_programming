@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Module for adding a new attribute to an object if possible."""
 
 
