@@ -1,21 +1,43 @@
 >>> MyList = __import__('1-my_list').MyList
-
->>> my_list_instance = MyList()
->>> my_list_instance.append(1)
->>> my_list_instance.append(4)
->>> my_list_instance.append(2)
->>> my_list_instance.append(3)
->>> my_list_instance.append(5)
->>> print(my_list_instance)
->>> my_list_instance.print_sorted()
->>> print(my_list_instance)
-
->>> my_list_instance = MyList([10, 7, 3, 8, 5, 2, 6, 9, 1, 4])
->>> print(my_list_instance)
->>> my_list_instance.print_sorted()
->>> print(my_list_instance)
-
->>> my_list_instance = MyList([5, 5, 5, 5, 5])
->>> print(my_list_instance)
->>> my_list_instance.print_sorted()
->>> print(my_list_instance)
+>>> isinstance(MyList(), list)
+True
+>>> issubclass(MyList, list)
+True
+>>> len(__import__('1-my_list').__doc__) > 1
+True
+>>> MyList().print_sorted()
+[]
+>>> 'print_sorted' in dir(MyList)
+True
+>>> custom_list = MyList([8, 3, 1, 7, 5])
+>>> print(custom_list)
+[8, 3, 1, 7, 5]
+>>> custom_list.print_sorted()
+[1, 3, 5, 7, 8]
+>>> print(custom_list)
+[8, 3, 1, 7, 5]
+>>> new_custom_list = MyList([42, 23, 17, 9, 31])
+>>> print(new_custom_list)
+[42, 23, 17, 9, 31]
+>>> new_custom_list.print_sorted()
+[9, 17, 23, 31, 42]
+>>> descending_list = MyList([6, 4, 2, 8, 1])
+>>> print(descending_list)
+[6, 4, 2, 8, 1]
+>>> descending_list.print_sorted()
+[1, 2, 4, 6, 8]
+>>> negative_list = MyList([-10, -5, -8, -2, -3])
+>>> print(negative_list)
+[-10, -5, -8, -2, -3]
+>>> negative_list.print_sorted()
+[-10, -8, -5, -3, -2]
+>>> zero_list = MyList([0, 0, 0, 0, 0])
+>>> print(zero_list)
+[0, 0, 0, 0, 0]
+>>> zero_list.print_sorted()
+[0, 0, 0, 0, 0]
+>>> invalid_arguments_list = MyList()
+>>> invalid_arguments_list.print_sorted(44, 33)
+Traceback (most recent call last):
+...
+TypeError: print_sorted() takes 1 positional argument but 3 were given
