@@ -11,10 +11,10 @@ class MyInt(int):
         """
         Invert the == operator.
         """
-        return super().__ne__(other)
+        return (not super().__eq__(other))
 
     def __ne__(self, other):
         """
         Invert the != operator.
         """
-        return super().__eq__(other)
+        return (not super().__ne__(other))
