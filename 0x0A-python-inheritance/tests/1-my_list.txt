@@ -1,19 +1,21 @@
+>>> MyList = __import__('1-my_list').MyList
+
 >>> my_list_instance = MyList()
 >>> my_list_instance.append(1)
 >>> my_list_instance.append(4)
 >>> my_list_instance.append(2)
 >>> my_list_instance.append(3)
 >>> my_list_instance.append(5)
->>> print(my_list_instance)  # Expecting: [1, 4, 2, 3, 5]
->>> my_list_instance.print_sorted()  # Expecting: [1, 2, 3, 4, 5]
->>> print(my_list_instance)  # Expecting: [1, 4, 2, 3, 5]
+>>> print(my_list_instance)
+>>> my_list_instance.print_sorted()
+>>> print(my_list_instance)
 
 >>> my_list_instance = MyList([10, 7, 3, 8, 5, 2, 6, 9, 1, 4])
->>> print(my_list_instance)  # Expecting: [10, 7, 3, 8, 5, 2, 6, 9, 1, 4]
->>> my_list_instance.print_sorted()  # Expecting: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
->>> print(my_list_instance)  # Expecting: [10, 7, 3, 8, 5, 2, 6, 9, 1, 4]
+>>> print(my_list_instance)
+>>> my_list_instance.print_sorted()
+>>> print(my_list_instance)
 
 >>> my_list_instance = MyList([5, 5, 5, 5, 5])
->>> print(my_list_instance)  # Expecting: [5, 5, 5, 5, 5]
->>> my_list_instance.print_sorted()  # Expecting: [5, 5, 5, 5, 5]
->>> print(my_list_instance)  # Expecting: [5, 5, 5, 5, 5]
+>>> print(my_list_instance)
+>>> my_list_instance.print_sorted()
+>>> print(my_list_instance)
