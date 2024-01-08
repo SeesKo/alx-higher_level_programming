@@ -78,3 +78,9 @@
 ... except Exception as e:
 ...     f"[{e.__class__.__name__}] {e}"
 '[TypeError] none_value must be an integer'
+
+>>> try:
+...     geometry_instance.integer_validator("integer_with_extra_args", 2, 2)
+... except Exception as e:
+...     f"[{e.__class__.__name__}] {e}"
+'[TypeError] integer_validator() takes 3 positional arguments but 4 were given'
