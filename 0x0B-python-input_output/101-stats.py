@@ -31,15 +31,14 @@ def compute_metrics():
 
     except KeyboardInterrupt:
         print_metrics(total_size, status_codes)
-
+        sys.exit(0)
 
 def print_metrics(total_size, status_codes):
     """Prints the computed metrics."""
     print("File size: {}".format(total_size))
 
-    for code in sorted(status_codes):
+    for code in sorted(status_codes, key=lambda x: int(x)):
         print("{}: {}".format(code, status_codes[code]))
-
 
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, lambda signal, frame: sys.exit(0))
