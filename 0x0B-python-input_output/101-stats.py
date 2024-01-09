@@ -30,11 +30,9 @@ def compute_metrics():
                     print(f"{code}: {status_counts[code]}")
 
     except KeyboardInterrupt:
-        pass
-
-    print(f"File size: {total_size}")
-    for code in sorted(status_counts, key=int):
-        print(f"{code}: {status_counts[code]}")
+        print(f"File size: {total_size}")
+        for code in sorted(status_counts, key=int):
+            print(f"{code}: {status_counts[code]}")
 
 
 if __name__ == "__main__":
