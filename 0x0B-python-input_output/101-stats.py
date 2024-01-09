@@ -10,6 +10,7 @@ from collections import defaultdict
 
 def compute_metrics():
     """Computes and prints metrics based on input lines."""
+
     total_size = 0
     status_counts = defaultdict(int)
 
@@ -30,9 +31,11 @@ def compute_metrics():
                     print(f"{code}: {status_counts[code]}")
 
     except KeyboardInterrupt:
-        print(f"File size: {total_size}")
-        for code in sorted(status_counts, key=int):
-            print(f"{code}: {status_counts[code]}")
+        pass
+
+    print(f"File size: {total_size}")
+    for code in sorted(status_counts, key=int):
+        print(f"{code}: {status_counts[code]}")
 
 
 if __name__ == "__main__":
