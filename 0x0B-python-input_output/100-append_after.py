@@ -7,6 +7,7 @@ file, after each line containing a specific string.
 
 def append_after(filename="", search_string="", new_string=""):
     """Inserts a line of text after each line containing a specific string."""
+
     lines = []
 
     with open(filename, 'r', encoding='utf-8') as file:
