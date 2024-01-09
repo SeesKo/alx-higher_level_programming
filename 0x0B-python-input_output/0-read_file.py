@@ -7,7 +7,7 @@ def read_file(filename=""):
     Reads a text file and prints its content to the standard output.
     """
     try:
-        with open(filename, encoding='utf-8') as file:
-            print(file.read(), end='')
+        with open(filename, encoding='utf-8') as myFile:
+            print(myFile.read(), end='')
     except FileNotFoundError:
         print(f"Error: File '{filename}' not found.")
