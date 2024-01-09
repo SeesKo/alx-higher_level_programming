@@ -35,7 +35,7 @@ def compute_metrics():
 
 def print_metrics(total_size, status_codes):
     """Prints the computed metrics."""
-    print("Total file size: {}".format(total_size))
+    print("File size: {}".format(total_size))
 
     for code in sorted(status_codes):
         print("{}: {}".format(code, status_codes[code]))
