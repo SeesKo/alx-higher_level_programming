@@ -10,6 +10,7 @@ def save_to_json_file(my_obj, filename):
     with open(filename, 'w', encoding='utf-8') as myFile:
         json.dump(my_obj, myFile)
 
+
 def load_from_json_file(filename):
     """Creates an object from a JSON file."""
     try:
@@ -17,6 +18,7 @@ def load_from_json_file(filename):
             return json.load(myFile)
     except (FileNotFoundError, json.JSONDecodeError):
         return []
+
 
 # Load existing data or create an empty list
 data = load_from_json_file("add_item.json")
