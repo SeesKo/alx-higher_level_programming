@@ -38,7 +38,7 @@ class Base:
         Returns:
             str: JSON string representation of list_dictionaries.
         """
-        if not list_dictionaries or len(list_dictionaries) == 0:
+        if not list_dictionaries:
             return "[]"
         else:
             return json.dumps(list_dictionaries)
