@@ -40,8 +40,8 @@ class Base:
         """
         if not list_dictionaries:
             list_dictionaries = []
-        else:
-            return json.dumps(list_dictionaries)
+
+        return json.dumps(list_dictionaries)
 
     @classmethod
     def save_to_file(cls, list_objs, filename=None):
