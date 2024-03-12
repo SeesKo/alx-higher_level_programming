@@ -1,18 +1,35 @@
-#!/usr/bin/env node
+#!/usr/bin/node
 const fs = require('fs');
-// Checking if correct number of arguments are provided
+
+// Check if correct number of arguments provided
 if (process.argv.length !== 5) {
-  console.error('Usage: ./102-concat.js <file1> <file2> <output>');
+  console.error('Usage: node concat.js <file1> <file2> <destination>');
   process.exit(1);
 }
-const [, , sourceFile1, sourceFile2, destinationFile] = process.argv;
-// Reading content of source files
-const content1 = fs.readFileSync(sourceFile1, 'utf8').trim();
-const content2 = fs.readFileSync(sourceFile2, 'utf8').trim();
-// Concatenating content
-const concatContent = content1 + '\n' + content2;
-// Printing concatenated content
-console.log(concatContent);
-// Writing concatenated content to destination file
-fs.writeFileSync(destinationFile, concatContent);
-process.exit(0);
+
+// Get file paths from command line arguments
+const [, , file1, file2, destination] = process.argv;
+
+// Read content of the first file
+fs.readFile(file1, 'utf8', (err, data1) => {
+  if (err) {
+    process.exit(1);
+  }
+
+  // Read content of the second file
+  fs.readFile(file2, 'utf8', (err, data2) => {
+    if (err) {
+      process.exit(1);
+    }
+
+    // Concatenate content of the two files
+    const concatenatedContent = data1.trim() + '\n' + data2.trim() + '\n';
+
+    // Write the concatenated content to the destination file
+    fs.writeFile(destination, concatenatedContent, 'utf8', (err) => {
+      if (err) {
+        process.exit(1);
+      }
+    });
+  });
+});
