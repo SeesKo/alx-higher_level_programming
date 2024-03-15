@@ -10,9 +10,7 @@ from relationship_state import Base, State
 from relationship_city import City
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        sys.exit(1)
-    username, password, database_name = sys.argv[1:]
+    username, password, database_name = sys.argv[1:4]
 
     # Database connection
     engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
