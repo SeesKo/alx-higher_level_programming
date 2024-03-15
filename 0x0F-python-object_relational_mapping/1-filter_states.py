@@ -5,21 +5,18 @@ import sys
 import MySQLdb
 
 if __name__ == "__main__":
-    # Retrieving command line arguments
-    username, password, database = sys.argv[1:4]
-    # Connecting to MySQL database
-    conn = MySQLdb.connect(host="localhost", port=3306, user=username,
-                           passwd=password, db=database)
-    # Creating cursor object
-    cursor = conn.cursor()
-    # Executing SQL query to select states with name starting with 'N'
-    query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
-    cursor.execute(query)
-    # Fetching all rows
-    rows = cursor.fetchall()
-    # Displaying results
-    for row[1][0] == 'N':
-        print(row)
-    # Closing cursor and database connection
-    cursor.close()
-    conn.close()
+    import sys
+    import MySQLdb
+
+    serv = MySQLdb.connect(host="localhost",  port=3306,
+                           user=sys.argv[1], password=sys.argv[2],
+                           database=sys.argv[3])
+
+    c = serv.cursor()
+    c.execute("SELECT * FROM states ORDER BY id ASC")
+    rows = c.fetchall()
+    for row in rows:
+        if row[1][0] == 'N':
+            print(row)
+    c.close()
+    serv.close()
