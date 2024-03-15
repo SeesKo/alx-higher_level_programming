@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Script that takes in an argument and displays all values in the
+"""
+Script that takes in an argument and displays all values in the
 states table of hbtn_0e_0_usa where name matches the argument.
 """
 import sys
@@ -14,8 +15,9 @@ if __name__ == "__main__":
     # Creating cursor object
     cursor = conn.cursor()
     # Executing SQL query to select states based on user input
-    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
-    cursor.execute(query, format(state_name,))
+    cursor.execute(
+        "SELECT * FROM states WHERE name='{}' ORDER BY id ASC".format(
+            state_name))
     # Fetching all rows
     rows = cursor.fetchall()
     # Displaying results
