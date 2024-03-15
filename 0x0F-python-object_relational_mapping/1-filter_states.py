@@ -13,7 +13,7 @@ if __name__ == "__main__":
     # Creating cursor object
     cursor = conn.cursor()
     # Executing SQL query to select states with name starting with 'N'
-    query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
+    query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY states.id ASC"
     cursor.execute(query)
     # Fetching all rows
     rows = cursor.fetchall()
