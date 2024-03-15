@@ -15,7 +15,7 @@ if __name__ == "__main__":
     cursor = conn.cursor()
     # Executing SQL query to select states based on user input
     query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
-    cursor.execute(query, (state_name,))
+    cursor.execute(query.format(state_name,))
     # Fetching all rows
     rows = cursor.fetchall()
     # Displaying results
