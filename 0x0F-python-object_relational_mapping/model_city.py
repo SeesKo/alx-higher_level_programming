@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Module that contains the definition of City class.
+Module containing the definition of City class.
 """
 from sqlalchemy import Column, Integer, String, ForeignKey
 from model_state import Base, State
