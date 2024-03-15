@@ -19,7 +19,10 @@ if __name__ == "__main__":
     # Fetching all rows
     rows = cursor.fetchall()
     # Extracting city names for the given state
-    cities = [row[2] for row in rows if row[4] == check[0]]
+    cities_list = []
+    for row in rows:
+        if row[4] == state_name:
+            cities_list.append(row[2])
     # Displaying results
     print(', '.join(cities))
     # Closing cursor and database connection
