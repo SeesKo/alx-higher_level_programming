@@ -6,18 +6,22 @@ import sys
 import MySQLdb
 
 if __name__ == "__main__":
+    # Retrieving command line arguments
     username, password, database, state_name = sys.argv[1:5]
-    conn = MySQLdb.connect(host="localhost", port=3306, user=username,
-                           passwd=password, db=database)
+    # Connecting to MySQL database
+    conn = MySQLdb.connect(user=username, passwd=password, db=database)
     cursor = conn.cursor()
-    cursor.execute(
-        "SELECT cities.name FROM cities "
-        "JOIN states ON cities.state_id = states.id"
-        "WHERE states.name = %s ORDER BY cities.id ASC",
-        (state_name,)
-    )
+    # Execute SQL query to select cities of the given state
+    cursor.execute("SELECT * FROM cities JOIN states "
+                   "ON cities.state_id = states.id "
+                   "WHERE states.name = %s "
+                   "ORDER BY cities.id ASC", (state_name,))
+    # Fetching all rows
     rows = cursor.fetchall()
-    cities = ', '.join(row[0] for row in rows)
-    print(cities)
+    # Extracting city names for the given state
+    cities = [city for city, _, _, _, state in rows if state == state_name]
+    # Displaying results
+    print(', '.join(cities))
+    # Closing cursor and database connection
     cursor.close()
     conn.close()
