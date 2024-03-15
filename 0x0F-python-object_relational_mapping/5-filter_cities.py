@@ -11,11 +11,12 @@ if __name__ == "__main__":
     # Connecting to MySQL database
     conn = MySQLdb.connect(user=username, passwd=password, db=database)
     cursor = conn.cursor()
+    state_name = sys.argv[4]
     # Execute SQL query to select cities of the given state
-    cursor.execute("SELECT * FROM cities JOIN states "
-                   "ON cities.state_id = states.id "
-                   "WHERE states.name = %s "
-                   "ORDER BY cities.id ASC", (state_name,))
+    cursor.execute("SELECT cities.id, cities.name, states.name \
+                    FROM cities \
+                    JOIN states ON cities.state_id = states.id \
+                    ORDER BY states.id")
     # Fetching all rows
     rows = cursor.fetchall()
     # Extracting city names for the given state
