@@ -21,8 +21,8 @@ if __name__ == "__main__":
     # Extracting city names for the given state
     cities_list = []
     for row in rows:
-        if row[4] == state_name:
-            cities_list.append(row[2])
+        if row[2] == state_name:
+            cities_list.append(row[1])
     # Displaying results
     print(', '.join(cities))
     # Closing cursor and database connection
