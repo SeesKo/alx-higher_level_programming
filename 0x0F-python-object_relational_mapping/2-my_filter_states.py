@@ -20,7 +20,8 @@ if __name__ == "__main__":
     rows = cursor.fetchall()
     # Displaying results
     for row in rows:
-        print(row)
+        if row[1] == state_name:
+            print(row)
     # Closing cursor and database connection
     cursor.close()
     conn.close()
