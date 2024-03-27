@@ -21,4 +21,4 @@ def find_peak(list_of_integers):
         else:
             low = mid + 1
 
-    return max(list_of_integers[low], list_of_integers[high])
+    return list_of_integers[mid]
