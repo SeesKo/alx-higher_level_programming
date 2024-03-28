@@ -16,7 +16,9 @@ if __name__ == "__main__":
     payload = {'q': q}
 
     try:
-        response = requests.post('http://0.0.0.0:5000/search_user', data=payload)
+        response = requests.post(
+            'http://0.0.0.0:5000/search_user', data=payload
+        )
         data = response.json()
         if data:
             print("[{}] {}".format(data.get('id'), data.get('name')))
