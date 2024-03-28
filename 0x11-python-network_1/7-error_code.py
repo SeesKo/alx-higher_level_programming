@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 Script that takes in URL, sends it request, then displays response's body.
-If HTTP status code is greater than or equal to 400, it prints 
+If HTTP status code is greater than or equal to 400, it prints
 "Error code:" followed by the value of the HTTP status code.
 """
 
